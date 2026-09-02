@@ -1,24 +1,40 @@
+// Function to switch from Hub to Presentation
+function openPresentation(topicId) {
+    document.querySelectorAll('.view').forEach(view => {
+        view.classList.remove('active');
+    });
+    document.getElementById(topicId).classList.add('active');
+}
+
+// Function to return to Hub
+function goHome() {
+    document.querySelectorAll('.view').forEach(view => {
+        view.classList.remove('active');
+    });
+    document.getElementById('hub').classList.add('active');
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     
-    // Sidebar Navigation Logic
-    const navButtons = document.querySelectorAll('.nav-btn');
-    const panels = document.querySelectorAll('.panel');
-    const scrollArea = document.getElementById('scroll-area');
+    // Sidebar Navigation Logic for BOTH topics
+    const sidebars = document.querySelectorAll('.sidebar');
+    
+    sidebars.forEach(sidebar => {
+        const navButtons = sidebar.querySelectorAll('.nav-btn');
+        const parentView = sidebar.closest('.view');
+        const panels = parentView.querySelectorAll('.panel');
+        
+        navButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active classes inside this specific presentation
+                navButtons.forEach(b => b.classList.remove('active'));
+                panels.forEach(p => p.classList.remove('active'));
 
-    navButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Remove active classes
-            navButtons.forEach(b => b.classList.remove('active'));
-            panels.forEach(p => p.classList.remove('active'));
-
-            // Add active class to clicked button and target panel
-            btn.classList.add('active');
-            const targetId = btn.getAttribute('data-target');
-            document.getElementById(targetId).classList.add('active');
-
-            // Reset scroll position and progress bar
-            scrollArea.scrollTop = 0;
-            updateProgress();
+                // Add active class to clicked button and target panel
+                btn.classList.add('active');
+                const targetId = btn.getAttribute('data-target');
+                document.getElementById(targetId).classList.add('active');
+            });
         });
     });
 
@@ -32,27 +48,13 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (content.style.maxHeight) {
                 content.style.maxHeight = null;
-                // Optional: remove padding when closed to look cleaner
                 content.style.paddingTop = "0";
                 content.style.paddingBottom = "0";
             } else {
                 content.style.paddingTop = "1rem";
                 content.style.paddingBottom = "1rem";
-                content.style.maxHeight = content.scrollHeight + 32 + "px"; // 32 is padding
+                content.style.maxHeight = content.scrollHeight + 32 + "px";
             }
         });
     });
-
-    // Scroll Progress Bar Logic
-    const progressBar = document.getElementById('progress-bar');
-
-    function updateProgress() {
-        const scrollTop = scrollArea.scrollTop;
-        const scrollHeight = scrollArea.scrollHeight - scrollArea.clientHeight;
-        const scrollPercent = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
-        progressBar.style.width = scrollPercent + '%';
-    }
-
-    scrollArea.addEventListener('scroll', updateProgress);
-    updateProgress(); // Initialize on load
 });
