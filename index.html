@@ -17,73 +17,82 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Open Sans', sans-serif; overflow: hidden; }
+        body { font-family: 'Open Sans', sans-serif; min-height: 100vh; overflow-x: hidden; }
         h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
 
         /* View Manager */
-        .view { display: none; height: 100vh; width: 100vw; }
-        .view.active { display: block; animation: fadeIn 0.5s; }
+        .view { display: none; min-height: 100vh; width: 100vw; }
+        .view.active { display: block; animation: fadeIn 0.3s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         /* Hub Screen */
-        #hub { background-color: var(--hub-bg); color: var(--hub-text); display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        .hub-header { text-align: center; margin-bottom: 4rem; }
-        .hub-header h1 { font-size: 3.5rem; letter-spacing: -1px; margin-bottom: 10px; color: #fff; }
+        #hub { background-color: var(--hub-bg); color: var(--hub-text); display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; padding: 2rem 1rem; }
+        .hub-header { text-align: center; margin-bottom: 3rem; }
+        .hub-header h1 { font-size: clamp(2rem, 5vw, 3.5rem); letter-spacing: -1px; margin-bottom: 10px; color: #fff; }
         .hub-header p { font-size: 1.2rem; color: #9ca3af; }
-        .hub-grid { display: flex; gap: 3rem; max-width: 1000px; width: 90%; }
-        
+        .hub-grid { display: flex; gap: 2rem; max-width: 1000px; width: 100%; flex-wrap: wrap; justify-content: center; }
+       
         .topic-card {
-            flex: 1; background: #1f2937; border: 2px solid transparent; border-radius: 16px; padding: 3rem 2rem;
+            flex: 1 1 300px; background: #1f2937; border: 2px solid transparent; border-radius: 16px; padding: 2.5rem 2rem;
             color: white; text-align: left; cursor: pointer; transition: all 0.3s ease;
         }
-        .topic-card:nth-child(1):hover { border-color: var(--writing-theme); transform: translateY(-10px); box-shadow: 0 10px 30px rgba(14,165,233,0.2); }
-        .topic-card:nth-child(2):hover { border-color: var(--egypt-theme); transform: translateY(-10px); box-shadow: 0 10px 30px rgba(217,119,6,0.2); }
+        .topic-card:nth-child(1):hover, .topic-card:nth-child(1):focus-visible { border-color: var(--writing-theme); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(14,165,233,0.2); }
+        .topic-card:nth-child(2):hover, .topic-card:nth-child(2):focus-visible { border-color: var(--egypt-theme); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(217,119,6,0.2); }
         .topic-card h2 { font-size: 1rem; color: #9ca3af; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
-        .topic-card h3 { font-size: 2rem; margin-bottom: 15px; }
-        .topic-card p { font-size: 1.1rem; line-height: 1.5; color: #d1d5db; }
+        .topic-card h3 { font-size: 1.8rem; margin-bottom: 15px; }
+        .topic-card p { font-size: 1rem; line-height: 1.5; color: #d1d5db; }
 
         /* Presentation Screens */
-        .presentation-view { background-color: var(--bg-light); color: var(--text-dark); }
-        .back-btn { position: absolute; top: 20px; left: 20px; background: #e5e7eb; border: none; padding: 10px 20px; font-weight: bold; border-radius: 8px; cursor: pointer; z-index: 100; transition: 0.2s; }
+        .presentation-view { background-color: var(--bg-light); color: var(--text-dark); position: relative; }
+        .back-btn { position: absolute; top: 15px; left: 20px; background: #e5e7eb; border: none; padding: 10px 18px; font-weight: bold; border-radius: 8px; cursor: pointer; z-index: 100; transition: 0.2s; }
         .back-btn:hover { background: #d1d5db; }
-        
-        .layout { display: flex; height: 100%; padding-top: 70px; }
-        
-        .sidebar { width: 250px; display: flex; flex-direction: column; padding: 2rem 1.5rem; }
+       
+        .layout { display: flex; min-height: 100vh; padding-top: 70px; }
+       
+        .sidebar { width: 250px; flex-shrink: 0; display: flex; flex-direction: column; padding: 2rem 1.5rem; background: #fff; }
         .writing-sidebar { border-right: 4px solid var(--writing-theme); }
         .egypt-sidebar { border-right: 4px solid var(--egypt-theme); }
-        .sidebar h2 { font-size: 1.5rem; margin-bottom: 2rem; }
-        
-        .nav-btn { background: none; border: none; text-align: left; padding: 12px; font-size: 1.1rem; font-weight: 600; cursor: pointer; border-radius: 8px; margin-bottom: 10px; color: #4b5563; transition: 0.3s; }
+        .sidebar h2 { font-size: 1.4rem; margin-bottom: 1.5rem; }
+       
+        .nav-btn { background: none; border: none; text-align: left; padding: 12px; font-size: 1rem; font-weight: 600; cursor: pointer; border-radius: 8px; margin-bottom: 8px; color: #4b5563; transition: 0.2s; }
         .nav-btn:hover { background: #e5e7eb; }
         .writing-sidebar .nav-btn.active { background: var(--writing-theme); color: white; }
         .egypt-sidebar .nav-btn.active { background: var(--egypt-theme); color: white; }
 
-        .content-area { flex-grow: 1; overflow-y: auto; padding: 2rem 10%; }
-        .panel { display: none; animation: slideUp 0.4s; }
+        .content-area { flex-grow: 1; overflow-y: auto; padding: 2rem 8%; max-width: 1200px; }
+        .panel { display: none; animation: slideUp 0.3s ease-out; }
         .panel.active { display: block; }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        
-        .panel h1 { font-size: 2.5rem; margin-bottom: 2rem; }
-        .card { background: var(--card-bg); padding: 2rem; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 2rem; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+       
+        .panel h1 { font-size: 2.2rem; margin-bottom: 1.5rem; }
+        .card { background: var(--card-bg); padding: 1.8rem; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 1.5rem; }
         #topic-writing .card { border-left: 5px solid var(--writing-theme); }
         #topic-egypt .card { border-left: 5px solid var(--egypt-theme); }
-        .card ul, .card ol { margin-left: 2rem; margin-top: 1rem; }
-        .card li { margin-bottom: 10px; }
+        .card ul, .card ol { margin-left: 1.5rem; margin-top: 0.8rem; }
+        .card li { margin-bottom: 8px; }
 
         /* Accordions */
-        .accordion { background-color: white; color: var(--text-dark); cursor: pointer; padding: 1.2rem; width: 100%; border: 1px solid #e5e7eb; text-align: left; font-size: 1.1rem; font-weight: bold; border-radius: 8px; margin-top: 1rem; display: flex; justify-content: space-between; }
-        .accordion::after { content: '+'; font-size: 1.5rem; }
+        .accordion-container { margin-top: 1rem; }
+        .accordion { background-color: white; color: var(--text-dark); cursor: pointer; padding: 1.2rem; width: 100%; border: 1px solid #e5e7eb; text-align: left; font-size: 1.05rem; font-weight: bold; border-radius: 8px; margin-top: 0.8rem; display: flex; justify-content: space-between; align-items: center; transition: background 0.2s; }
+        .accordion::after { content: '+'; font-size: 1.4rem; line-height: 1; }
         .accordion.active-acc::after { content: '−'; }
         #topic-writing .accordion.active-acc { background: var(--writing-theme); color: white; border-color: var(--writing-theme); }
         #topic-egypt .accordion.active-acc { background: var(--egypt-theme); color: white; border-color: var(--egypt-theme); }
-        .accordion-content { max-height: 0; overflow: hidden; transition: 0.3s; background: white; border-radius: 0 0 8px 8px; padding: 0 1.2rem; border: 1px solid #e5e7eb; border-top: none; }
-        .accordion-content p { padding: 1rem 0; }
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; background: white; border-radius: 0 0 8px 8px; padding: 0 1.2rem; border: 1px solid transparent; border-top: none; }
+        .accordion-content.open { border-color: #e5e7eb; padding-top: 1rem; padding-bottom: 1rem; }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .layout { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; border-right: none; padding: 1rem; }
+            .writing-sidebar { border-bottom: 4px solid var(--writing-theme); }
+            .egypt-sidebar { border-bottom: 4px solid var(--egypt-theme); }
+            .content-area { padding: 1.5rem 5%; }
+        }
     </style>
 </head>
 <body>
 
-    <!-- MAIN HUB (Landing Page) -->
     <div id="hub" class="view active">
         <div class="hub-header">
             <h1>Presentation Hub</h1>
@@ -103,12 +112,11 @@
         </div>
     </div>
 
-    <!-- TOPIC 1: THE BEGINNING OF WRITING -->
     <div id="topic-writing" class="view presentation-view">
         <button class="back-btn" onclick="goHome()">&#8592; Back to Hub</button>
-        
+       
         <div class="layout">
-            <nav class="sidebar writing-sidebar">
+            <nav class="sidebar writing-sidebar" aria-label="Writing Navigation">
                 <h2>Writing</h2>
                 <button class="nav-btn active" data-target="w-intro">Before vs. After</button>
                 <button class="nav-btn" data-target="w-harappan">The Harappan Script</button>
@@ -121,30 +129,30 @@
                     <div class="card">
                         <h3>Before Writing</h3>
                         <ul>
-                            <li>More than 99 per cent of human history falls under this period (from about 3 million years ago to 5000 years ago)[cite: 1].</li>
-                            <li>Tools, implements, and other material objects made by humans (artefacts) are the major sources for reconstructing people's ways of living[cite: 1].</li>
-                            <li>It is generally difficult to understand the thoughts and ideas of people[cite: 1].</li>
-                            <li>Measurement of time is approximate, meaning dating events and cultures is only approximate[cite: 1].</li>
+                            <li>More than 99% of human history falls under this period (~3 million to 5000 years ago).</li>
+                            <li>Artefacts (tools and objects) are the primary sources for reconstructing daily life.</li>
+                            <li>Understanding human thoughts, ideas, and beliefs remains difficult.</li>
+                            <li>Time measurement and event dating are strictly approximate.</li>
                         </ul>
                     </div>
                     <div class="card">
                         <h3>After Writing</h3>
                         <ul>
-                            <li>Less than 1 per cent of human history falls under this period, the last 5000 years, including the present[cite: 1].</li>
-                            <li>Both material remains and written documents are sources for reconstructing lives and society[cite: 1].</li>
-                            <li>Literature (written documents) provides information about names, events, and social, political, and cultural life[cite: 1].</li>
-                            <li>Dating becomes relatively accurate because written documents mention specific dates of events like coronations and wars[cite: 1].</li>
+                            <li>Covers less than 1% of human history (~5000 years ago to present).</li>
+                            <li>Combines material remains and written records for accurate reconstruction.</li>
+                            <li>Written literature reveals names, historical events, and cultural structures.</li>
+                            <li>Dating becomes precise due to documented records like war and coronation dates.</li>
                         </ul>
                     </div>
                 </section>
 
                 <section id="w-harappan" class="panel">
                     <h1>The Harappan Script Enigma</h1>
-                    <p>One of the earliest known writing systems is associated with the Sindhu-Sarasvatī, also known as the Indus Valley or Harappan Civilisation[cite: 1].</p>
+                    <p>One of the earliest writing systems belongs to the Indus Valley (Harappan) Civilisation.</p>
                     <div class="card">
                         <ul>
-                            <li><strong>Pictographic Script:</strong> Writings and engravings found on objects such as seals and pottery indicate that the Harappans used a pictographic script[cite: 1].</li>
-                            <li><strong>Undeciphered:</strong> It has not yet been deciphered[cite: 1]. As a result, we still do not understand the Harappan script, which is also referred to as <i>Sindhu lipi</i>[cite: 1].</li>
+                            <li><strong>Pictographic Script:</strong> Found on seals and pottery across ancient sites.</li>
+                            <li><strong>Undeciphered:</strong> Known as <i>Sindhu lipi</i>, its meaning remains unknown to modern scholars.</li>
                         </ul>
                     </div>
                 </section>
@@ -154,16 +162,18 @@
                     <div class="accordion-container">
                         <button class="accordion">Mesopotamia & Egypt (Deciphered Scripts)</button>
                         <div class="accordion-content">
-                            <p>Other early writing systems include the cuneiform script of the Sumerians in Mesopotamia and the hieroglyphic script of ancient Egypt[cite: 1]. Both flourished around the same time as the Harappan Civilisation[cite: 1]. Unlike the Harappan script, these scripts have been deciphered and mark the beginning of the historical period, about 5000 years ago[cite: 1].</p>
+                            <p>Sumerian cuneiform and Egyptian hieroglyphics flourished around the same era as the Harappan Civilisation (~5000 years ago). Both scripts have been successfully deciphered, providing direct insight into early historic periods.</p>
                         </div>
+
                         <button class="accordion">The Brahmi Script (India)</button>
                         <div class="accordion-content">
-                            <p>From about 400 BCE, a script known as Brahmi was used in parts of southern India and in the Ganga Valley (northern India)[cite: 1]. It was later formalised by the Emperor Ashoka (3rd century BCE) and contemporary Iron Age people all over southern India[cite: 1].</p>
+                            <p>Used from around 400 BCE across southern India and the Ganga Valley, Brahmi was later formalised under Emperor Ashoka in the 3rd century BCE.</p>
                         </div>
+
                         <button class="accordion">Oracle Bones & Logographs (China)</button>
                         <div class="accordion-content">
-                            <p>The earliest source of information about China are the 'oracles', which were symbols made on pieces of animal bones and tortoise shells[cite: 1]. These bones were heated until they cracked, and interpretations were made based on the crack patterns to foretell the future[cite: 1]. They tell us about the hopes, desires, and fears of the early Chinese[cite: 1].</p>
-                            <p>The Chinese script is <strong>logographic</strong>, with characters representing entire words or morphemes rather than sounds (for example, characters representing a "Person" or a "Tree")[cite: 1].</p>
+                            <p>Early Chinese writing involved symbols carved onto animal bones and tortoise shells. Heated until cracked, these 'oracles' were read to foretell future events.</p>
+                            <p>The Chinese script is <strong>logographic</strong>, where each character represents an entire word or concept rather than a phonetic sound.</p>
                         </div>
                     </div>
                 </section>
@@ -171,12 +181,11 @@
         </div>
     </div>
 
-    <!-- TOPIC 2: THE EGYPTIAN CIVILISATION -->
     <div id="topic-egypt" class="view presentation-view">
         <button class="back-btn" onclick="goHome()">&#8592; Back to Hub</button>
-        
+       
         <div class="layout">
-            <nav class="sidebar egypt-sidebar">
+            <nav class="sidebar egypt-sidebar" aria-label="Egypt Navigation">
                 <h2>Egypt</h2>
                 <button class="nav-btn active" data-target="e-intro">Nile & Farming</button>
                 <button class="nav-btn" data-target="e-admin">Admin & Calendar</button>
@@ -188,13 +197,13 @@
             <main class="content-area">
                 <section id="e-intro" class="panel active">
                     <h1>The Gift of the Nile</h1>
-                    <p>Egypt saw the emergence of city-states around 3000 BCE as population increased and resources became available[cite: 1].</p>
+                    <p>City-states emerged around 3000 BCE due to expanding populations along the Nile valley.</p>
                     <div class="card">
                         <h3>Kemet: The Black Land</h3>
                         <ul>
-                            <li>The river Nile watered the land along its banks, and every summer the river flooded, leading to annual inundations[cite: 1].</li>
-                            <li>This left rich mud, called <strong>'kemet'</strong>, which was excellent for growing crops[cite: 1].</li>
-                            <li>Egyptians referred to their land as Kemet, which means 'the black', coming from the black river valley soil[cite: 1].</li>
+                            <li>Annual summer Nile floods deposited rich, dark silt along the banks.</li>
+                            <li>The fertile mud, called <strong>kemet</strong>, formed the foundation for Egyptian agriculture.</li>
+                            <li>The ancient inhabitants named their kingdom Kemet ('the black land') after this soil.</li>
                         </ul>
                     </div>
                 </section>
@@ -203,15 +212,14 @@
                     <h1>Farming, Administration & Time</h1>
                     <div class="card">
                         <h3>The Birth of Administration</h3>
-                        <p>About 5000 years ago, farmers discovered that by digging ditches they could divert water from the Nile into their fields and store water in reservoirs for later use[cite: 1]. The need to dig ditches and construct dams required collective effort, which must have led to the growth of local government and the rise of an administrative class[cite: 1].</p>
+                        <p>Constructing irrigation canals, dams, and reservoirs required large-scale collective action, driving the emergence of local governance and an organized administrative class.</p>
                     </div>
                     <div class="card">
                         <h3>The Egyptian Calendar</h3>
-                        <p>By counting the days between Nile floods, they developed a calendar[cite: 1].</p>
+                        <p>Tracking the intervals between Nile floods led to a highly accurate 365-day calendar based on the heliacal rising of Sirius (the Dog Star):</p>
                         <ul>
-                            <li><strong>Three Seasons:</strong> Inundation (autumn), Peret growing (winter), and shemu harvest (summer) - each consisting of four months[cite: 1].</li>
-                            <li><strong>The Year:</strong> Based on the rising of Sirius (Dog Star)[cite: 1]. Year = 365 days (12 months x 30 days + 5 extra days)[cite: 1].</li>
-                            <li>It was quite accurate, but lost time since the real year is about 1/4 day longer[cite: 1].</li>
+                            <li><strong>Three Seasons:</strong> Inundation (Akhet), Growing (Peret), and Harvest (Shemu) — 4 months each.</li>
+                            <li><strong>Structure:</strong> 12 months of 30 days + 5 additional festival days.</li>
                         </ul>
                     </div>
                 </section>
@@ -221,13 +229,12 @@
                     <div class="accordion-container">
                         <button class="accordion">Papyrus Technology & Libraries</button>
                         <div class="accordion-content">
-                            <p>Egyptian history is reconstructed from <strong>papyrus</strong> or old paper records[cite: 1]. Papyrus was made by cutting the inner trunk of the plant into strips, criss-crossing, pressing, drying, and polishing them into sheets[cite: 1]. (For example, the <i>Papyrus Ebers</i> lists more than 700 cures and spells of Egyptian medicine)[cite: 1].</p>
-                            <p><strong>Libraries:</strong> Dating back to 2000 BCE, they stored papyrus scrolls in labeled jars on shelves[cite: 1]. Stories included the oldest version of 'Sindbad the Sailor', animal fables suggesting a link to 'Aesop's Fables', tales of ghosts, miracles, romances, and the oldest known form of 'Cinderella'[cite: 1].</p>
+                            <p>Papyrus paper was crafted by layering strips of the plant's inner pith, pressing, and drying them into smooth sheets. Ancient libraries stored these rolled scrolls in labeled jars, preserving medical texts like the <i>Papyrus Ebers</i>, folklore, and administrative records.</p>
                         </div>
+
                         <button class="accordion">Deciphering the Script: The Rosetta Stone</button>
                         <div class="accordion-content">
-                            <p>In 1799, Pierre Bouchard, a French army engineer repairing a fort in Egypt, found a giant black stone covered in mysterious writing—the <strong>Rosetta Stone</strong>[cite: 1].</p>
-                            <p>It had three types of writing, including Greek[cite: 1]. Since people could read Greek, it acted as a bilingual dictionary[cite: 1]. In 1822, a French linguist, Jean-François Champollion, finally deciphered the script[cite: 1].</p>
+                            <p>Discovered in 1799, the Rosetta Stone featured the same text written in three scripts: Hieroglyphic, Demotic, and Ancient Greek. Using the Greek text as a key, French linguist Jean-François Champollion deciphered ancient hieroglyphics in 1822.</p>
                         </div>
                     </div>
                 </section>
@@ -235,24 +242,23 @@
                 <section id="e-society" class="panel">
                     <h1>Society, Religion & Pyramids</h1>
                     <div class="card">
-                        <h3>Social Hierarchy Pyramid</h3>
-                        <p>The society was strictly divided[cite: 1]:</p>
+                        <h3>Social Structure</h3>
                         <ol>
-                            <li><strong>Pharaoh</strong> (at the top)</li>
-                            <li><strong>Government Officials, Nobles and Priests</strong></li>
-                            <li><strong>Free Landholders, Artisans and Merchants</strong></li>
-                            <li><strong>Serfs and Slaves</strong> (at the bottom)</li>
+                            <li><strong>Pharaoh:</strong> Absolute ruler and religious leader</li>
+                            <li><strong>Nobles, Officials & Priests:</strong> Administrators and spiritual authorities</li>
+                            <li><strong>Artisans, Merchants & Farmers:</strong> Skilled labor and agricultural workforce</li>
+                            <li><strong>Servants & Slaves:</strong> Unskilled laborers</li>
                         </ol>
                     </div>
                     <div class="accordion-container">
                         <button class="accordion">Mummification & The Afterlife</button>
                         <div class="accordion-content">
-                            <p>Egyptians believed that each person had a <strong>ka</strong> (a spiritual double) that lived on after death if the body was preserved[cite: 1]. The Papyrus of Ani even depicts a scale weighing a heart against a feather to judge the dead[cite: 1].</p>
-                            <p><strong>Mummification process:</strong> Involved removing internal organs (except the heart), drying the body with natron, oiling it, wrapping it in linen strips, placing it in a coffin, and burying it with rituals[cite: 1].</p>
+                            <p>Ancient Egyptians believed the <strong>ka</strong> (spiritual essence) survived physical death if the body remained intact. Mummification involved organ removal, drying with natron salt, wrapping in linen, and performing sacred burial rituals.</p>
                         </div>
+
                         <button class="accordion">From Mastabas to Pyramids</button>
                         <div class="accordion-content">
-                            <p>Over time, powerful individuals called 'Pharaohs' emerged as rulers[cite: 1]. After death, they were buried deep underground and a rectangular structure called a <strong>mastaba</strong> was placed over the burial chamber[cite: 1]. Gradually, these mastabas were placed one on top of the other to form a pyramid, such as the step pyramid at Saqqara[cite: 1].</p>
+                            <p>Royal tombs evolved from flat-roofed rectangular mud-brick structures (<strong>mastabas</strong>) into stacked step pyramids (such as Saqqara), eventually progressing to smooth-sided stone pyramids.</p>
                         </div>
                     </div>
                 </section>
@@ -262,71 +268,66 @@
                     <div class="card">
                         <h3>Leisure & Festivals</h3>
                         <ul>
-                            <li>Early Egyptians enjoyed leisure activities: they swam, canoed, played board games, and enjoyed music and dancing[cite: 1].</li>
-                            <li>Festivals were central, dedicated to gods and the pharaoh's rule[cite: 1]. Statues of gods were paraded accompanied by music played on instruments like the <strong>'sistrum'</strong>[cite: 1].</li>
-                            <li>The <strong>Sed festival</strong> was held to mark a king's 30th year on the throne[cite: 1].</li>
+                            <li>Recreational activities included board games, swimming, hunting, and musical performances.</li>
+                            <li>Religious festivals featured processions using instruments like the <strong>sistrum</strong> rattle.</li>
+                            <li>The <strong>Sed Festival</strong> was celebrated to renew the Pharaoh's divine authority every 30 years.</li>
                         </ul>
                     </div>
                     <div class="card">
-                        <h3>Women's Rights</h3>
-                        <p>Egyptian women, in general, enjoyed more rights than their Greek or Roman counterparts, as they could own property and run businesses[cite: 1]. For instance, <strong>Cleopatra (69-30 BCE)</strong> was trained from childhood to rule and became queen at the age of eighteen[cite: 1].</p>
+                        <h3>Status of Women</h3>
+                        <p>Egyptian women held legal rights superior to many neighboring ancient cultures: they could own real estate, execute legal contracts, run businesses, and attain positions of supreme political power (e.g., Cleopatra VII).</p>
                     </div>
                 </section>
             </main>
         </div>
     </div>
 
-    <!-- ALL JAVASCRIPT INCLUDED IN THIS FILE -->
     <script>
-        // Open Presentation from Hub
         function openPresentation(topicId) {
-            document.querySelectorAll('.view').forEach(view => {
-                view.classList.remove('active');
-            });
+            document.querySelectorAll('.view').forEach(view => view.classList.remove('active'));
             document.getElementById(topicId).classList.add('active');
+            window.scrollTo(0, 0);
         }
 
-        // Return to Hub
         function goHome() {
-            document.querySelectorAll('.view').forEach(view => {
-                view.classList.remove('active');
-            });
+            document.querySelectorAll('.view').forEach(view => view.classList.remove('active'));
             document.getElementById('hub').classList.add('active');
+            window.scrollTo(0, 0);
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            // Sidebar Navigation Logic
-            const sidebars = document.querySelectorAll('.sidebar');
-            sidebars.forEach(sidebar => {
+            // Navigation switching logic
+            document.querySelectorAll('.sidebar').forEach(sidebar => {
                 const navButtons = sidebar.querySelectorAll('.nav-btn');
                 const parentView = sidebar.closest('.view');
                 const panels = parentView.querySelectorAll('.panel');
-                
+
                 navButtons.forEach(btn => {
                     btn.addEventListener('click', () => {
                         navButtons.forEach(b => b.classList.remove('active'));
                         panels.forEach(p => p.classList.remove('active'));
+                       
                         btn.classList.add('active');
                         const targetId = btn.getAttribute('data-target');
-                        document.getElementById(targetId).classList.add('active');
+                        const targetPanel = document.getElementById(targetId);
+                        if (targetPanel) {
+                            targetPanel.classList.add('active');
+                        }
                     });
                 });
             });
 
-            // Accordion Logic
-            const accordions = document.querySelectorAll('.accordion');
-            accordions.forEach(acc => {
+            // Accordion toggle logic with height calculations
+            document.querySelectorAll('.accordion').forEach(acc => {
                 acc.addEventListener('click', function() {
                     this.classList.toggle('active-acc');
                     const content = this.nextElementSibling;
-                    
-                    if (content.style.maxHeight) {
+
+                    if (content.classList.contains('open')) {
                         content.style.maxHeight = null;
-                        content.style.paddingTop = "0";
-                        content.style.paddingBottom = "0";
+                        content.classList.remove('open');
                     } else {
-                        content.style.paddingTop = "1rem";
-                        content.style.paddingBottom = "1rem";
+                        content.classList.add('open');
                         content.style.maxHeight = content.scrollHeight + 32 + "px";
                     }
                 });
