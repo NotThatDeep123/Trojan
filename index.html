@@ -3,140 +3,204 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Early Civilisations Interactive Guide</title>
+    <title>History Presentation Hub</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Progress Bar -->
-    <div id="progress-container"><div id="progress-bar"></div></div>
+    <!-- MAIN HUB (Landing Page) -->
+    <div id="hub" class="view active">
+        <div class="hub-header">
+            <h1>Presentation Hub</h1>
+            <p>Select your topic to begin</p>
+        </div>
+        <div class="hub-grid">
+            <button class="topic-card" onclick="openPresentation('topic-writing')">
+                <h2>Topic 1</h2>
+                <h3>The Beginning of Writing</h3>
+                <p>Explore the transition from pre-history to the written word.</p>
+            </button>
+            <button class="topic-card" onclick="openPresentation('topic-egypt')">
+                <h2>Topic 2</h2>
+                <h3>The Egyptian Civilisation</h3>
+                <p>Explore the Nile, the Pharaohs, and ancient Egyptian society.</p>
+            </button>
+        </div>
+    </div>
 
-    <div class="layout">
-        <!-- Sidebar Navigation -->
-        <nav class="sidebar">
-            <h2>Time Machine</h2>
-            <button class="nav-btn active" data-target="writing">1. Before & After Writing</button>
-            <button class="nav-btn" data-target="bronze-age">2. The Bronze Age</button>
-            <button class="nav-btn" data-target="mesopotamia">3. Mesopotamia (4 Empires)</button>
-            <button class="nav-btn" data-target="egypt">4. Ancient Egypt</button>
-        </nav>
+    <!-- TOPIC 1: THE BEGINNING OF WRITING -->
+    <div id="topic-writing" class="view presentation-view">
+        <button class="back-btn" onclick="goHome()">&#8592; Back to Hub</button>
+        
+        <div class="layout">
+            <nav class="sidebar writing-sidebar">
+                <h2>Writing</h2>
+                <button class="nav-btn active" data-target="w-intro">Before vs. After</button>
+                <button class="nav-btn" data-target="w-harappan">The Harappan Script</button>
+                <button class="nav-btn" data-target="w-global">Global Early Scripts</button>
+            </nav>
 
-        <!-- Main Content -->
-        <main class="content-area" id="scroll-area">
-
-            <!-- Section 1: Writing -->
-            <section id="writing" class="panel active">
-                <h1>The Invention of Writing: Before and After</h1>
-                <p>The history of humanity stretches back millions of years, but the way we study it changed completely with the invention of writing.</p>
-                
-                <div class="card">
-                    <h3>Before Writing vs. After Writing</h3>
-                    <ul>
-                        <li><strong>Before Writing:</strong> Covers more than 99% of human history (from ~3 million to 5000 years ago). The main sources for reconstruction are tools, implements, and material artefacts. It is very difficult to understand the thoughts and ideas of people, and measurement of time/dating is only approximate.</li>
-                        <li><strong>After Writing:</strong> Covers less than 1% of history (the last 5000 years). Reconstructed using both material remains and written documents. Literature reveals names, events, and social/political life. Dating becomes relatively accurate because documents mention specific dates like coronations and wars.</li>
-                    </ul>
-                </div>
-
-                <div class="accordion-container">
-                    <button class="accordion">Early Global Scripts</button>
-                    <div class="accordion-content">
-                        <p><strong>Harappan Script (Sindhu-Sarasvatī):</strong> One of the earliest known systems. They used a pictographic script (Sindhu lipi) found on seals and pottery. However, it has not yet been deciphered, so their exact thoughts remain a mystery.</p>
-                        <p><strong>Deciphered Scripts:</strong> The cuneiform script (Mesopotamia) and hieroglyphic script (Egypt) flourished at the same time as the Harappans. Both have been deciphered, marking the start of the historical period about 5000 years ago.</p>
-                        <p><strong>Brahmi Script:</strong> Used from about 400 BCE in southern India and the Ganga Valley. It was later formalised by Emperor Ashoka in the 3rd century BCE.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Section 2: Bronze Age -->
-            <section id="bronze-age" class="panel">
-                <h1>Bronze Age Civilisations Outside India</h1>
-                <p>The shift to producing surplus food and material goods laid the foundation for the earliest civilizations, which all emerged in fertile river plains.</p>
-                
-                <div class="card">
-                    <h3>The Four River Plains</h3>
-                    <ul>
-                        <li><strong>Sindhu-Sarasvatī Civilisation:</strong> Along the Sindhu and Sarasvatī rivers.</li>
-                        <li><strong>Mesopotamian Civilisation:</strong> Around the Euphrates and Tigris rivers in West Asia.</li>
-                        <li><strong>Egyptian Civilisation:</strong> Along the Nile River.</li>
-                        <li><strong>Chinese Civilisation:</strong> In the Huang He basin in northern China.</li>
-                    </ul>
-                    <p><em>Geographic Note:</em> Mesopotamia and the Indus valleys were geographically close, facilitating strong contacts and trade. Conversely, there is little tangible evidence of direct contact between Egypt/China and the Sindhu-Sarasvatī civilisation.</p>
-                </div>
-            </section>
-
-            <!-- Section 3: Mesopotamia -->
-            <section id="mesopotamia" class="panel">
-                <h1>Mesopotamia: The Land in Between</h1>
-                <p>Mesopotamia is the Greek name for the land drained by the Euphrates and Tigris rivers. Today, this covers Iraq, Kuwait, and parts of Turkey and southwestern Iran. The crescent-shaped foothills from the Mediterranean to the Persian Gulf are called the <strong>'fertile crescent'</strong>. Farming began here 12,000 years ago, and copper tools arrived around 4500 BCE.</p>
-
-                <div class="accordion-container">
-                    <button class="accordion">1. The Sumerians (3500 BCE)</button>
-                    <div class="accordion-content">
-                        <p>The earliest city-based civilisation (cities like Ur in southern Iraq). They were the first to build dams and canals for irrigation, and use mud/burnt bricks for houses and defensive walls.</p>
+            <main class="content-area">
+                <section id="w-intro" class="panel active">
+                    <h1>The Invention of Writing: Before and After</h1>
+                    <div class="card">
+                        <h3>Before Writing</h3>
                         <ul>
-                            <li><strong>Religion & Society:</strong> Worshipped multiple gods controlling floods and winds. They built a grand stepped pyramid-shaped temple called a <strong>ziggurat</strong>. The top was holy, surrounded by palaces and treasuries, with only one entrance. Entry was restricted to high priests/priestesses. Kings lived in palaces; regular people lived in small brick houses.</li>
-                            <li><strong>Economy:</strong> Focused on farming, metalworking, pottery, textiles, and merchants.</li>
-                            <li><strong>Innovations:</strong> Invented the wheeled cart, sailboat, and a number system based on 60 (giving us the 60-minute hour, 60-second minute, and 360-degree circle). Used math for building and measuring fields.</li>
-                            <li><strong>Writing (3200 BCE):</strong> Invented <strong>cuneiform</strong>. Scribes used wedge-shaped reeds on damp clay tablets. Scribes held high status like priests. Used for myths (Epic of Gilgamesh), hymns, laws, and tracking work of potters, seal cutters, shipbuilders, carpenters, and farmers. Used across different city-states despite language differences.</li>
+                            <li>More than 99 per cent of human history falls under this period (from about 3 million years ago to 5000 years ago)[cite: 1].</li>
+                            <li>Tools, implements, and other material objects made by humans (artefacts) are the major sources for reconstructing people's ways of living[cite: 1].</li>
+                            <li>It is generally difficult to understand the thoughts and ideas of people[cite: 1].</li>
+                            <li>Measurement of time is approximate, meaning dating events and cultures is only approximate[cite: 1].</li>
                         </ul>
                     </div>
-
-                    <button class="accordion">2. The Akkadians (2334 BCE)</button>
-                    <div class="accordion-content">
-                        <p>Emerged in central Mesopotamia. Though they spoke Akkadian, they used the Sumerian cuneiform script. Under King Sargon, they established the world's first dynastic empire and evolved creative literature.</p>
-                        <p><strong>Trade:</strong> Traded with Dilmun (Bahrain), Magan (Oman), and Meluhha (Sindhu-Sarasvatī). They exchanged semiprecious stone beads, ivory, timber, gold dust, and copper.</p>
+                    <div class="card">
+                        <h3>After Writing</h3>
+                        <ul>
+                            <li>Less than 1 per cent of human history falls under this period, the last 5000 years, including the present[cite: 1].</li>
+                            <li>Both material remains and written documents are sources for reconstructing lives and society[cite: 1].</li>
+                            <li>Literature (written documents) provides information about names, events, and social, political, and cultural life[cite: 1].</li>
+                            <li>Dating becomes relatively accurate because written documents mention specific dates of events like coronations and wars[cite: 1].</li>
+                        </ul>
                     </div>
+                </section>
 
-                    <button class="accordion">3. The Assyrians (2154 BCE)</button>
-                    <div class="accordion-content">
-                        <p>Centered in the northern city-state of Assur. Their dominance rapidly spread across Mesopotamia, the west, and the south, lasting until early 1700 BCE.</p>
+                <section id="w-harappan" class="panel">
+                    <h1>The Harappan Script Enigma</h1>
+                    <p>One of the earliest known writing systems is associated with the Sindhu-Sarasvatī, also known as the Indus Valley or Harappan Civilisation[cite: 1].</p>
+                    <div class="card">
+                        <ul>
+                            <li><strong>Pictographic Script:</strong> Writings and engravings found on objects such as seals and pottery indicate that the Harappans used a pictographic script[cite: 1].</li>
+                            <li><strong>Undeciphered:</strong> It has not yet been deciphered[cite: 1]. As a result, we still do not understand the Harappan script, which is also referred to as <i>Sindhu lipi</i>[cite: 1].</li>
+                        </ul>
                     </div>
+                </section>
 
-                    <button class="accordion">4. The Babylonians (1900 BCE)</button>
-                    <div class="accordion-content">
-                        <p>Gained dominance in central Mesopotamia. Reached peak glory under King Hammurabi (1792 BCE), who compiled the <strong>Code of Hammurabi</strong>—rules for civil and social conduct that became a model for future legal systems.</p>
-                        <p><strong>Decline:</strong> Lost prominence by 1400 BCE due to attacks by the Hittites (who mastered new technologies/natural resources), environmental degradation, pressure on agricultural lands, and internal political/economic problems.</p>
+                <section id="w-global" class="panel">
+                    <h1>Other Early Global Scripts</h1>
+                    <div class="accordion-container">
+                        <button class="accordion">Mesopotamia & Egypt (Deciphered Scripts)</button>
+                        <div class="accordion-content">
+                            <p>Other early writing systems include the cuneiform script of the Sumerians in Mesopotamia and the hieroglyphic script of ancient Egypt[cite: 1]. Both flourished around the same time as the Harappan Civilisation[cite: 1]. Unlike the Harappan script, these scripts have been deciphered and mark the beginning of the historical period, about 5000 years ago[cite: 1].</p>
+                        </div>
+                        <button class="accordion">The Brahmi Script (India)</button>
+                        <div class="accordion-content">
+                            <p>From about 400 BCE, a script known as Brahmi was used in parts of southern India and in the Ganga Valley (northern India)[cite: 1]. It was later formalised by the Emperor Ashoka (3rd century BCE) and contemporary Iron Age people all over southern India[cite: 1].</p>
+                        </div>
+                        <button class="accordion">Oracle Bones & Logographs (China)</button>
+                        <div class="accordion-content">
+                            <p>The earliest source of information about China are the 'oracles', which were symbols made on pieces of animal bones and tortoise shells[cite: 1]. These bones were heated until they cracked, and interpretations were made based on the crack patterns to foretell the future[cite: 1]. They tell us about the hopes, desires, and fears of the early Chinese[cite: 1].</p>
+                            <p>The Chinese script is <strong>logographic</strong>, with characters representing entire words or morphemes rather than sounds (for example, characters representing a "Person" or a "Tree")[cite: 1].</p>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            </main>
+        </div>
+    </div>
 
-            <!-- Section 4: Egypt -->
-            <section id="egypt" class="panel">
-                <h1>Egyptian Civilisation (3000 BCE)</h1>
-                <p>Flourished along the river Nile. The land was called <strong>Kemet</strong> ('the black') because of the rich mud left by the Nile's annual summer floods.</p>
-                <p>Greeks like Herodotus visited in the 5th century BCE, and a 19th-century collection called <em>de L'Egypte</em> provides fascinating details.</p>
+    <!-- TOPIC 2: THE EGYPTIAN CIVILISATION -->
+    <div id="topic-egypt" class="view presentation-view">
+        <button class="back-btn" onclick="goHome()">&#8592; Back to Hub</button>
+        
+        <div class="layout">
+            <nav class="sidebar egypt-sidebar">
+                <h2>Egypt</h2>
+                <button class="nav-btn active" data-target="e-intro">Nile & Farming</button>
+                <button class="nav-btn" data-target="e-admin">Admin & Calendar</button>
+                <button class="nav-btn" data-target="e-writing">Papyrus & Rosetta</button>
+                <button class="nav-btn" data-target="e-society">Society & Pyramids</button>
+                <button class="nav-btn" data-target="e-culture">Leisure & Women</button>
+            </nav>
 
-                <div class="accordion-container">
-                    <button class="accordion">Farming, Governance & Calendar</button>
-                    <div class="accordion-content">
-                        <p>Farmers dug ditches and stored water in reservoirs. This collective effort led to local governments and an administrative class. They created a calendar based on the rising of Sirius (Dog Star) and counting days between floods.</p>
-                        <p><strong>The Calendar:</strong> 3 seasons (Inundation/autumn, Peret growing/winter, Shemu harvest/summer). Year = 365 days (12 months x 30 days + 5 extra days). It lost time because the real year is 1/4 day longer.</p>
+            <main class="content-area">
+                <section id="e-intro" class="panel active">
+                    <h1>The Gift of the Nile</h1>
+                    <p>Egypt saw the emergence of city-states around 3000 BCE as population increased and resources became available[cite: 1].</p>
+                    <div class="card">
+                        <h3>Kemet: The Black Land</h3>
+                        <ul>
+                            <li>The river Nile watered the land along its banks, and every summer the river flooded, leading to annual inundations[cite: 1].</li>
+                            <li>This left rich mud, called <strong>'kemet'</strong>, which was excellent for growing crops[cite: 1].</li>
+                            <li>Egyptians referred to their land as Kemet, which means 'the black', coming from the black river valley soil[cite: 1].</li>
+                        </ul>
                     </div>
+                    <p><em>Historical Context:</em> Egypt was known to the Greeks and Romans; Greek writers like Herodotus visited and wrote about Egypt in the 5th century BCE, and a 19th-century collection titled <i>de L'Egypte</i> provides fascinating details[cite: 1].</p>
+                </section>
 
-                    <button class="accordion">Writing, Papyrus & The Rosetta Stone</button>
-                    <div class="accordion-content">
-                        <p><strong>Papyrus:</strong> "Old paper" made by cutting the inner trunk of the papyrus plant into strips, criss-crossing, pressing, drying, and polishing them. (e.g., Papyrus Ebers lists 700+ cures/spells).</p>
-                        <p><strong>Libraries (2000 BCE):</strong> Stored scrolls in labeled jars. Stories included Sindbad, animal fables (linked to Aesop), ghosts, miracles, romances, and the oldest form of Cinderella.</p>
-                        <p><strong>The Rosetta Stone:</strong> Found in 1799 by French engineer Pierre Bouchard while repairing a fort. A black stone with three scripts (including Greek). Deciphered in 1822 by French linguist Jean-François Champollion.</p>
+                <section id="e-admin" class="panel">
+                    <h1>Farming, Administration & Time</h1>
+                    <div class="card">
+                        <h3>The Birth of Administration</h3>
+                        <p>About 5000 years ago, farmers discovered that by digging ditches they could divert water from the Nile into their fields and store water in reservoirs for later use[cite: 1]. The need to dig ditches and construct dams required collective effort, which must have led to the growth of local government and the rise of an administrative class[cite: 1].</p>
                     </div>
-
-                    <button class="accordion">Society, Religion & Pyramids</button>
-                    <div class="accordion-content">
-                        <p><strong>Social Hierarchy:</strong> Pharaoh -> Gov Officials, Nobles, Priests -> Free Landholders, Artisans, Merchants -> Serfs and Slaves.</p>
-                        <p><strong>Burial:</strong> Believed every person had a <em>ka</em> (spiritual double) that lived on if the body was preserved via <strong>mummification</strong> (remove organs except heart, dry with natron, oil, wrap in linen strips, place in coffin). The Papyrus of Ani shows the "weighing of the heart".</p>
-                        <p><strong>Tombs:</strong> Pharaohs were buried underground covered by a rectangular structure called a <em>mastaba</em>. These were stacked to form pyramids, like the step pyramid at Saqqara.</p>
+                    <div class="card">
+                        <h3>The Egyptian Calendar</h3>
+                        <p>By counting the days between Nile floods, they developed a calendar[cite: 1].</p>
+                        <ul>
+                            <li><strong>Three Seasons:</strong> Inundation (autumn), Peret growing (winter), and shemu harvest (summer) - each consisting of four months[cite: 1].</li>
+                            <li><strong>The Year:</strong> Based on the rising of Sirius (Dog Star)[cite: 1]. Year = 365 days (12 months x 30 days + 5 extra days)[cite: 1].</li>
+                            <li>It was quite accurate, but lost time since the real year is about 1/4 day longer[cite: 1].</li>
+                        </ul>
                     </div>
+                </section>
 
-                    <button class="accordion">Leisure & Women's Rights</button>
-                    <div class="accordion-content">
-                        <p><strong>Leisure:</strong> Swam, canoed, played board games, music, and dancing. Festivals paraded god statues to music from a <em>sistrum</em>. The Sed festival marked a king's 30th year on the throne.</p>
-                        <p><strong>Women:</strong> Egyptian women enjoyed more rights than Greek or Roman women; they could own property and run businesses. Cleopatra (69-30 BCE) was trained to rule from childhood and became queen at 18.</p>
+                <section id="e-writing" class="panel">
+                    <h1>Writing, Papyrus & The Rosetta Stone</h1>
+                    <div class="accordion-container">
+                        <button class="accordion">Papyrus Technology & Libraries</button>
+                        <div class="accordion-content">
+                            <p>Egyptian history is reconstructed from <strong>papyrus</strong> or old paper records[cite: 1]. Papyrus was made by cutting the inner trunk of the plant into strips, criss-crossing, pressing, drying, and polishing them into sheets[cite: 1]. (For example, the <i>Papyrus Ebers</i> lists more than 700 cures and spells of Egyptian medicine)[cite: 1].</p>
+                            <p><strong>Libraries:</strong> Dating back to 2000 BCE, they stored papyrus scrolls in labeled jars on shelves[cite: 1]. Stories included the oldest version of 'Sindbad the Sailor', animal fables suggesting a link to 'Aesop's Fables', tales of ghosts, miracles, romances, and the oldest known form of 'Cinderella'[cite: 1].</p>
+                        </div>
+                        <button class="accordion">Deciphering the Script: The Rosetta Stone</button>
+                        <div class="accordion-content">
+                            <p>In 1799, Pierre Bouchard, a French army engineer repairing a fort in Egypt, found a giant black stone covered in mysterious writing—the <strong>Rosetta Stone</strong>[cite: 1].</p>
+                            <p>It had three types of writing, including Greek[cite: 1]. Since people could read Greek, it acted as a bilingual dictionary[cite: 1]. In 1822, a French linguist, Jean-François Champollion, finally deciphered the script[cite: 1].</p>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-        </main>
+                <section id="e-society" class="panel">
+                    <h1>Society, Religion & Pyramids</h1>
+                    <div class="card">
+                        <h3>Social Hierarchy Pyramid</h3>
+                        <p>The society was strictly divided[cite: 1]:</p>
+                        <ol>
+                            <li><strong>Pharaoh</strong> (at the top)</li>
+                            <li><strong>Government Officials, Nobles and Priests</strong></li>
+                            <li><strong>Free Landholders, Artisans and Merchants</strong></li>
+                            <li><strong>Serfs and Slaves</strong> (at the bottom)</li>
+                        </ol>
+                    </div>
+                    <div class="accordion-container">
+                        <button class="accordion">Mummification & The Afterlife</button>
+                        <div class="accordion-content">
+                            <p>Egyptians believed that each person had a <strong>ka</strong> (a spiritual double) that lived on after death if the body was preserved[cite: 1]. The Papyrus of Ani even depicts a scale weighing a heart against a feather to judge the dead[cite: 1].</p>
+                            <p><strong>Mummification process:</strong> Involved removing internal organs (except the heart), drying the body with natron, oiling it, wrapping it in linen strips, placing it in a coffin, and burying it with rituals[cite: 1].</p>
+                        </div>
+                        <button class="accordion">From Mastabas to Pyramids</button>
+                        <div class="accordion-content">
+                            <p>Over time, powerful individuals called 'Pharaohs' emerged as rulers[cite: 1]. After death, they were buried deep underground and a rectangular structure called a <strong>mastaba</strong> was placed over the burial chamber[cite: 1]. Gradually, these mastabas were placed one on top of the other to form a pyramid, such as the step pyramid at Saqqara[cite: 1].</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="e-culture" class="panel">
+                    <h1>Leisure, Festivals & Women's Rights</h1>
+                    <div class="card">
+                        <h3>Leisure & Festivals</h3>
+                        <ul>
+                            <li>Early Egyptians enjoyed leisure activities: they swam, canoed, played board games, and enjoyed music and dancing[cite: 1].</li>
+                            <li>Festivals were central, dedicated to gods and the pharaoh's rule[cite: 1]. Statues of gods were paraded accompanied by music played on instruments like the <strong>'sistrum'</strong>[cite: 1].</li>
+                            <li>The <strong>Sed festival</strong> was held to mark a king's 30th year on the throne[cite: 1].</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Women's Rights</h3>
+                        <p>Egyptian women, in general, enjoyed more rights than their Greek or Roman counterparts, as they could own property and run businesses[cite: 1]. For instance, <strong>Cleopatra (69-30 BCE)</strong> was trained from childhood to rule and became queen at the age of eighteen[cite: 1].</p>
+                    </div>
+                </section>
+            </main>
+        </div>
     </div>
 
     <script src="script.js"></script>
